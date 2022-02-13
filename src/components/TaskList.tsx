@@ -19,6 +19,7 @@ export function TaskList() {
 
     if (!newTaskTitle) {
       alert('Insira um "to do"')
+      return;
     } else {
 
       const newTask = {
@@ -27,21 +28,27 @@ export function TaskList() {
         isComplete: false,
       }
 
-      setTasks(tasks => [...tasks, newTask]);
-      setNewTaskTitle('');
+      setTasks(tasks => [...tasks, newTask]); +
+        setNewTaskTitle('');
     }
-
-
-
 
   }
 
   function handleToggleTaskCompletion(id: number) {
     // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
+    const checkedTask = tasks.map(task => task.id == id ? {
+      ...task,
+      //isComplete: true
+      iscomplete: !task.isComplete
+    } : task);
+
+    setTasks(checkedTask)
+
   }
 
   function handleRemoveTask(id: number) {
     // Remova uma task da listagem pelo ID
+
   }
 
   return (
